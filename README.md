@@ -24,3 +24,13 @@ I engineered a lightweight, event-driven Python script using the `boto3` SDK to 
 * **Scheduling:** Amazon EventBridge
 * **Language:** Python
 * **AWS SDK:** Boto3
+
+## Simulated Case Study: Unattached EBS Volume Cost Optimization
+
+**Situation:** The organization noticed a consistent month-over-month increase in AWS storage costs. A billing audit revealed this was driven primarily by developers terminating EC2 instances after testing, but forgetting to delete the attached EBS (Elastic Block Store) volumes.
+
+**Task:** My objective was to implement a zero-maintenance, automated solution to continuously hunt down and eliminate these "orphaned" storage volumes before they could permanently bloat the monthly budget.
+
+**Action:** I deployed this serverless Python automation script using AWS Lambda and Amazon EventBridge. I configured an EventBridge cron rule to trigger the Lambda function every night at midnight. Upon execution, the Boto3 script scanned the entire AWS account for any EBS volumes with an "available" state (indicating they were detached and unused), logged the volume IDs to CloudWatch, and automatically issued a delete command.
+
+**Result:** During its initial execution, the script successfully identified and deleted over 50 orphaned EBS volumes, resulting in an immediate $1,200 reduction in the monthly AWS bill. The continuous nightly scans have permanently stopped this budget leak with absolutely zero manual intervention required from the engineering team.
