@@ -6,7 +6,7 @@ In fast-moving cloud environments, it is incredibly common for engineers to dele
 This project solves that problem by implementing a serverless automation that continuously hunts down and eliminates wasted cloud spend.
 
 ## The Architecture
-![Architecture Diagram](finops-serverless-architecture.drawio.png
+![Architecture Diagram](finops-serverless-architecture.drawio.png)
 
 ## The Solution
 I engineered a lightweight, event-driven Python script using the `boto3` SDK to act as an automated FinOps auditor. 
